@@ -42,17 +42,45 @@ app.post("/api/register", async (req, res) => {
   try {
     await DB.insert("users",data, (err, rows) => {
       if(err) throw err;
-      console.log(rows);
     })
-    return res.send({
-      message: "注册成功"
-    })
+    return res.send({ message: "注册成功" });
   } catch (err) {
-    return res.status(422).send({
-      message: "注册失败"
-    })
+    console.error(err);
+    return res.status(422).send({ message: "注册失败" });
   }
   
 })
 
+// 获取文章内容
+app.get("/api/getArticle/:aid", async (req, res) => {
+  await DB.select("articles", "*", ["article_id", "=", req.params.aid], rows => {
+    res.send(rows);
+  })
+})
+
+// 获取文章列表
+app.get("/api/getArticleList", async (req, res) => {
+  await DB.selectAll("articles", ["article_title", "article_id"], rows => {
+    res.send(rows);
+  });
+})
+// 插入提交文章
+app.post("/api/upArticle", async (req, res) => {
+  const data = {
+    article_title   : req.body.title,
+    article_content : req.body.content,
+    user_id         : req.body.uid
+  }
+  await DB.insert("articles", data, (err, rows) => {
+    try {
+      if(err) throw err;
+      res.send({ message: "提交成功" });
+    } catch (err) {
+      console.error(err);
+      res.send({ message: "提交失败" });
+    }
+  })
+})
+
+// 开启服务并监听端口
 app.listen(port, () => console.log(`Server run in port ${port}`))

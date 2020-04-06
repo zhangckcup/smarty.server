@@ -25,4 +25,5 @@ select("users", "user_password", ["user_name",'=',data.user_name], rows=>{
 insert(table: String, data: Object, callback: (err: MysqlError, res: Arrar))
 ```
 
-server.js 添加 login, register接口
+server.js 添加 login, register接口。
+server.js 添加 getArticle, getArticleList, upArticle 接口。
