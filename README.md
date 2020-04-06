@@ -12,10 +12,10 @@ module.js 为 Mysql 数据库封装了Insert, Select, SelectAll 方法。
 
 ```js
 // 全部选择，SQL: select cols from table
-selectAll(table: String, cols: Array, callback: (rows: Array))
+selectAll(table: String, cols: Array|String, callback: (rows: Array))
 
 // 条件选择，SQL: select cols from table where (where)
-select(table: String, cols: Array, where: Array, callback(rows: Array))
+select(table: String, cols: Array|String, where: Array, callback(rows: Array))
 // example:
 select("users", "user_password", ["user_name",'=',data.user_name], rows=>{
   // 对取得的数据行进行操作
