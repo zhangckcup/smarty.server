@@ -3,4 +3,5 @@ dist/
 .vscode/
 
 key.js
+port.js
 /mysql_test*

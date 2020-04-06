@@ -1,10 +1,10 @@
 const express = require("express");
-const app = express();
 const DB = require("./module/module");
-const port = 3000;
+const port = require("./module/port");
+const app = express();
 
 app.use(express.static('dist'));
-app.use(express.json())
+app.use(express.json());
 
 // 获取所有用户
 app.get("/api/getUserAll", async (req, res) => {
