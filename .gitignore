@@ -1,6 +1,6 @@
-node_modules
-.vscode
+node_modules/
+dist/
+.vscode/
 
 key.js
-mysql_test.sql
-test.http
+/mysql_test*
