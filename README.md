@@ -20,6 +20,7 @@ select(table: String, cols: Array, where: Array, callback(rows: Array))
 select("users", "user_password", ["user_name",'=',data.user_name], rows=>{
   // 对取得的数据行进行操作
 })
+
 // 插入数据，SQL: INSERT INTO table (data.keys) VALUES (data.values)
 insert(table: String, data: Object, callback: (err: MysqlError, res: Arrar))
 ```
