@@ -54,7 +54,11 @@ app.post("/api/register", async (req, res) => {
 // 获取文章内容
 app.get("/api/getArticle/:aid", async (req, res) => {
   await DB.select("articles", "*", ["article_id", "=", req.params.aid], rows => {
-    res.send(rows);
+    if(rows.length == 0){
+      res.status(422).send({ message: "文章不存在" })
+    } else {
+      res.send(rows[0]);
+    }
   })
 })
 
@@ -77,7 +81,7 @@ app.post("/api/upArticle", async (req, res) => {
       res.send({ message: "提交成功" });
     } catch (err) {
       console.error(err);
-      res.send({ message: "提交失败" });
+      res.status(422).send({ message: "提交失败" });
     }
   })
 })

@@ -10,7 +10,7 @@ Content-Type: application/json
   "password": "123456"
 }
 
-### 用户注册
+### 用户注册（OK）
 POST http://localhost:3000/api/register
 Content-Type: application/json
 
@@ -36,3 +36,6 @@ Content-Type: application/json
   "content" : "今天是个好日子，天气多云转晴，我在开发接口，开发了好几个，希望可以早日上线。",
   "uid"     : "24"
 }
+
+
+### 获取天气（代理）

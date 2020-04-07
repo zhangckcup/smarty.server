@@ -1,7 +1,7 @@
 node_modules/
-dist/
 .vscode/
 
 key.js
 port.js
+test.http
 /mysql_test*
