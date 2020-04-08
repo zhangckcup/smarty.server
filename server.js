@@ -86,5 +86,20 @@ app.post("/api/upArticle", async (req, res) => {
   })
 })
 
+// 定制404页面
+app.use((req, res) => {
+  res.type('text/html');
+  res.status(404);
+  res.send('<h1>404 - Not Found</h1>');
+})
+
+// 定制500界面
+app.use((err, req, res, next) => {
+  console.err(err.stack)
+  res.type('text/html')
+  res.status(500)
+  res.send('<h1>500 - Server Error</h1>')
+})
+
 // 开启服务并监听端口
 app.listen(port, () => console.log(`Server run in port ${port}`))
