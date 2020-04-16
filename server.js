@@ -48,7 +48,6 @@ app.post("/api/register", async (req, res) => {
     console.error(err);
     return res.status(422).send({ message: "注册失败" });
   }
-  
 })
 
 // 获取文章内容
@@ -68,6 +67,7 @@ app.get("/api/getArticleList", async (req, res) => {
     res.send(rows);
   });
 })
+
 // 插入提交文章
 app.post("/api/upArticle", async (req, res) => {
   const data = {
@@ -90,7 +90,7 @@ app.post("/api/upArticle", async (req, res) => {
 app.use((req, res) => {
   res.type('text/html');
   res.status(404);
-  res.send('<h1>404 - Not Found</h1>');
+  res.send('<h1><center>404 - Not Found</center></h1>');
 })
 
 // 定制500界面
@@ -98,7 +98,7 @@ app.use((err, req, res, next) => {
   console.err(err.stack)
   res.type('text/html')
   res.status(500)
-  res.send('<h1>500 - Server Error</h1>')
+  res.send('<h1><center>500 - Server Error</center></h1>')
 })
 
 // 开启服务并监听端口
