@@ -1,5 +1,5 @@
 const express = require("express");
-const DB = require("./module/module");
+const DB = require("./module/MysqlModule");
 const port = require("./module/port");
 const app = express();
 
@@ -8,7 +8,7 @@ app.use(express.json());
 
 // 获取所有用户
 app.get("/api/getUserAll", async (req, res) => {
-  await DB.selectAll("users", ['user_name'], rows => {
+  await DB.selectAll("users", '*', rows => {
     return res.send(rows);
   });
 })
@@ -49,6 +49,14 @@ app.post("/api/register", async (req, res) => {
     return res.status(422).send({ message: "注册失败" });
   }
 })
+
+app.post("/api/update", async (req, res) => {
+  const data = {
+    user_id: req.body.userid,
+    user_password: req.body.password
+  }
+})
+
 
 // 获取文章内容
 app.get("/api/getArticle/:aid", async (req, res) => {

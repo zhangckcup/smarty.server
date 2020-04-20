@@ -2,16 +2,18 @@
   "name": "smarty.server",
   "version": "1.0.0",
   "description": "server of smarty.ink",
-  "main": "server.js",
+  "main": "app.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "start": "nodemon server.js"
+    "start": "nodemon app.js",
+    "server": "node ./app.js &"
   },
   "author": "zhangckcup",
   "license": "MIT",
   "dependencies": {
-    "express": "^4.17.1",
+    "@types/node": "^13.13.0",
     "koa": "^2.11.0",
+    "koa-bodyparser": "^4.3.0",
     "koa-router": "^8.0.8",
     "mysql": "^2.18.1"
   }
