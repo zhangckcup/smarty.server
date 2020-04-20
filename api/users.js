@@ -17,25 +17,21 @@ router.get('/test', async (ctx) => {
  * @desc    用户注册接口
  * @access  公开
  */
-router.post("/register", async (ctx) => {
+router.post("/register", async (ctx, next) => {
+  next();
   const data = {
     user_name: ctx.request.body.username,
     user_password: ctx.request.body.password
-  }
+  };
   try {
-    await DB.select('users','user_name', data, async (err, rows) => {
-      if (err) throw err;
-      if (rows.length){
-        ctx.status = 400;
+    let rows = await DB.select('users','user_id', {user_name: data.user_name})
+      if (rows.length) {
         ctx.body = {msg: "用户名已存在"};
-        return false;
+        return;
       } else {
-        await DB.insert("users",data,(err, rows) => {
-          if (err) throw err;
-          ctx.body = {msg: "注册成功"}
-        })
+        await DB.insert("users",data);
       }
-    })
+      ctx.body = {msg: "注册成功"};
   } catch (err) {
     console.error(err);
   }

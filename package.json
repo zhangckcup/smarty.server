@@ -5,8 +5,8 @@
   "main": "app.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "start": "nodemon app.js",
-    "server": "node ./app.js &"
+    "start": "nodemon ./app.js",
+    "serve": "node ./app.js"
   },
   "author": "zhangckcup",
   "license": "MIT",
@@ -15,6 +15,8 @@
     "koa": "^2.11.0",
     "koa-bodyparser": "^4.3.0",
     "koa-router": "^8.0.8",
-    "mysql": "^2.18.1"
+    "koa-static": "^5.0.0",
+    "mysql": "^2.18.1",
+    "nodemon": "^2.0.3"
   }
 }
