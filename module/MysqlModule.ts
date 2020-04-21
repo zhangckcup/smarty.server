@@ -1,12 +1,9 @@
-import { rejects } from "assert";
-
 const mysql = require('mysql');
 const mysqlConfig = require('./key.js')
 const mysqlPool  = mysql.createPool(mysqlConfig);
 
 // 查找全部
 async function selectAll(table:String, cols:String){
-  // table: 表名 String, cols:列名 Array
   return new Promise((resolve, reject) => {
     mysqlPool.getConnection((err:Error, connection:any) => {
       if(err) throw err;
@@ -21,8 +18,7 @@ async function selectAll(table:String, cols:String){
 }
 
 // 查找带Where的情况
-async function select(table:String, cols:String, where:any){
-  // table: 表名 String, cols:列名 Array, where: 条件 对象
+async function selectWhere(table:String, cols:String, where:any){
   return new Promise((resolve, reject) => {
     mysqlPool.getConnection((err:Error, connection:any) => {
       if(err) throw err;
@@ -45,7 +41,6 @@ async function select(table:String, cols:String, where:any){
 
 // 插入数据
 async function insert(table:String, data:any){
-  // table: 表名 String, data: 插入的数据 Objcet
   return new Promise((resolve, reject) => {
     mysqlPool.getConnection((err:Error, connection:any) => {
       if(err) throw err;
@@ -74,8 +69,8 @@ async function updateById(table:String, data:any, idCol:String, id:Number){
           value.push(data[i]);
           query.push('??=?');
       });
-      const queryStr = `UPDATE ?? SET ${query.join(',')} while ??=?`;
-      connection.query(queryStr, [table, ...value, idCol, id], (err:Error,res:any[]) => {
+      const queryStr = `UPDATE ?? SET ${query.join(',')} WHERE ??=?`;
+      connection.query(queryStr, [table, ...value, idCol, Number(id)], (err:Error,res:any[]) => {
         connection.release();
         if (err) reject(err);
         else resolve(res);
@@ -90,8 +85,8 @@ async function deleteById(table:String, idCol:String, id:Number){
   return new Promise((resolve, reject) => {
     mysqlPool.getConnection((err:Error, connection:any) => {
       if(err) throw err;
-      const queryStr = "DELETE FROM ?? while ??=?";
-      connection.query(queryStr, [table, idCol, id], (err:Error,res:any[]) => {
+      const queryStr = "DELETE FROM ?? WHERE ??=?";
+      connection.query(queryStr, [table, idCol, Number(id)], (err:Error,res:any[]) => {
         connection.release();
         if (err) reject(err);
         else resolve(res);
@@ -101,7 +96,7 @@ async function deleteById(table:String, idCol:String, id:Number){
 }
 
 module.exports = {
-  select,
+  selectWhere,
   selectAll,
   insert,
   updateById,
