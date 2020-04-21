@@ -11,7 +11,7 @@ module.exports = passport => {
     new JwtStrategy(opts, async (jwt_payload, done) => {
       const user = await DB.selectWhere('users', '*', {user_name: jwt_payload.name});
       if (user.length) {
-        return done(null, user[0]);
+        return done(null, {user_password:'******' , ...user[0]});
       } else {
         return done(null, false);
       }

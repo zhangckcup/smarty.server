@@ -45,15 +45,6 @@ app.use(async (ctx, next) => {
   }
 })
 
-// 500
-app.use(async (ctx, next) => {
-  await next();
-  if(parseInt(ctx.status) === 500 ){
-    ctx.type = "text/html";
-    ctx.body = "<h1>500 -- Not Found</h1>";
-  }
-})
-
 const port = require("./module/port");
 
 app.listen(port, () => {
