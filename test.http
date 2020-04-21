@@ -31,12 +31,14 @@ GET http://localhost:4000/api/articles/3 HTTP/1.1
 ### 提交文章
 POST http://localhost:4000/api/articles/submit HTTP/1.1
 Content-Type: application/json
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MzUsIm5hbWUiOiJoYWhhaGhhMDEiLCJpYXQiOjE1ODc0NTM0NTYsImV4cCI6MTU4ODA1ODI1Nn0.HAzqNvvlp1vHdBsxRjhaMPzZ-YmvmrRBDDQjyF0lEwY
 
 {
-  "title"   : "测试用文",
-  "content" : "今天是个好日子，天气多云转晴，我在开发接口，开发了好几个，希望可以早日上线。",
-  "uid"     : "24"
+  "article_title"   : "测试用文",
+  "article_content" : "今天是个好日子，天气多云转晴，我在开发接口，开发了好几个，希望可以早日上线。"
 }
 
 ### 删除文章
-GET http://localhost:4000/api/articles/delete4 HTTP/1.1
+GET http://localhost:4000/api/articles/delete5 HTTP/1.1
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MzUsIm5hbWUiOiJoYWhhaGhhMDEiLCJpYXQiOjE1ODc0NTM0NTYsImV4cCI6MTU4ODA1ODI1Nn0.HAzqNvvlp1vHdBsxRjhaMPzZ-YmvmrRBDDQjyF0lEwY
+
