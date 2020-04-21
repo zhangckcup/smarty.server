@@ -1,9 +1,7 @@
 node_modules/
 .vscode/
-dist/
+test/
 
 key.js
 port.js
-test.http
 package-lock.json
-/mysql_test*
