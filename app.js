@@ -2,7 +2,8 @@ const Koa = require("koa");
 const Router = require("koa-router");
 const static = require('koa-static');
 const bodyParser = require("koa-bodyparser");
-const passport = require('koa-passport')
+const passport = require('koa-passport');
+const path = require("path");
 
 const users = require("./api/users");
 const articles = require("./api/articles");
@@ -20,11 +21,11 @@ require("./module/passport")(passport);
 app.use(bodyParser());
 
 // 静态资源管理
-app.use(static("dist"));
+app.use(static(__dirname + "/dist"));
 
 // 路由
-router.get('/', async ctx => {
-  ctx.body = {msg: "Hello world."}
+router.get('/', async (ctx) => {
+  await ctx.render('index');
 })
 
 // api/users
