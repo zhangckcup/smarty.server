@@ -3,7 +3,6 @@ const Router = require("koa-router");
 const static = require('koa-static');
 const bodyParser = require("koa-bodyparser");
 const passport = require('koa-passport');
-const path = require("path");
 
 const users = require("./api/users");
 const articles = require("./api/articles");
